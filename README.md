@@ -1,5 +1,6 @@
 # PUI homework
 
-Deployed website: `add the URL to your deployed website`
+Deployed website: `https://yuriko0.github.io/TH-PUI-HW/index.html` 
 
-Repository link: `add the URL to this repository`
+Repository link: `https://github.com/Yuriko0/TH-PUI-HW`
+
