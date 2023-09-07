@@ -1,6 +1,6 @@
 # PUI homework
 
-Deployed website: `https://yuriko0.github.io/TH-PUI-HW/index.html` 
+Deployed website: `https://yuriko0.github.io/TH-PUI-HW/solution-hw1/index.html` 
 
-Repository link: `https://github.com/Yuriko0/TH-PUI-HW`
+Repository link: `https://github.com/Yuriko0/TH-PUI-HW/solution-hw1`
 
