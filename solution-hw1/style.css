@@ -82,10 +82,16 @@ div{
 
 .h:hover{
     background-color:yellow;
+
+    margin-left:400px;
+    margin-right:400px
 }
 
 .centeredTextBold:hover{
     background-color:yellow;
+    margin-left:500px;
+    margin-right:500px;
+    
 }
 
 #button:hover{
