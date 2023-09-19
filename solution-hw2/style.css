@@ -1,50 +1,95 @@
 
+
 div{
     padding-top:20px;
     padding-bottom:20px;
     text-align:center;
+    font-family: Arial, Helvetica, sans-serif;
     
+}
+
+a{
+    text-decoration:none;
+
+}
+
+#line{
+    width:100%;
+    margin-top:0px;
+    height:1px;
+    background-color:black;
+}
+
+#line2{
+    height:5px;
+    padding-top:5px;
+}
+
+#intro{
+    width:auto;
+    text-align:center;
+    margin-left:0;
+    font-size:25px;
 }
 
 .centeredTextLarge {
 
     color:black;
     font-size:40px;
-    padding-left:10px;
-    padding-right:10px;
+
 }
 
 
 .centeredTextBold {
-    
+    width:auto;
     color:black;
     font-size:20px;
-    font-weight:bold;
-    padding-left:10px;
-    padding-right:10px;
+    margin-left:200px;
+    margin-right:0px;
 
 }
 
 .centeredTextMid {
-    width:auto;
+    white-space:nowrap;
+    width:50px;
     color:black;
     font-size:20px;
-    padding-left:10px;
-    padding-right:10px;
+    margin-top:10px;
+    text-align:center;
+}
+
+.rightTextMid {
+    white-space:nowrap;
+    width:50px;
+    color:black;
+    font-size:20px;
+    text-align:right;
+}
+
+#centeredTextMid {
+    width:300px;
+    color:black;
+    font-size:20px;
+    margin-top:10px;
+    margin-left:10px;
+    margin-right:10px;
+
 
 }
+
+
 
 .centeredTextSmall {
     width:auto;
     color:black;
-    font-size:15px;
-    padding-left:10px;
-    padding-right:10px;
+    font-size:18px;
+    margin-left:60px;
+    margin-top:10px;
 
 }
 
 .centeredImage{
-    width:400px;
+    width:285px;
     height:auto;
     margin-left:auto;
     margin-right:auto;
@@ -56,6 +101,7 @@ div{
     width: 400px;
     height: auto;
     text-align:left;
+    padding:0px;
 }
 
 #detailImage{
@@ -66,10 +112,15 @@ div{
 }
 
 #button{
+    align-items:right;
     font-size: 20px;
     border:3px solid black;
+    margin-top:30px;
+    margin-left:30px;
     padding-left:20px;
     padding-right:20px;
+    padding-top:15px;
+    padding-bottom:15px;
 }
 
 
@@ -80,17 +131,18 @@ div{
     border:3px solid black;
 }
 
+
 .h:hover{
     background-color:yellow;
-
-    margin-left:400px;
-    margin-right:400px
+    padding:10px;
+    font-weight:bolder
 }
+    
+
 
 .centeredTextBold:hover{
     background-color:yellow;
-    margin-left:500px;
-    margin-right:500px;
+    font-weight:bolder
     
 }
 
@@ -98,4 +150,116 @@ div{
     background-color:yellow;
 }
 
-    1
+    
+.row {
+    display: flex;
+    width: 1200px;
+    background-color: white;
+    justify-content:space-between;
+    margin-left:10%;
+    margin-right:10%;
+}
+
+.row div {
+    text-align:left;
+    width: 285px;
+    margin: 0px;
+    padding:0px;
+}
+
+.heading1{
+    display: flex;
+    width: 1200px;
+    background-color: white;
+    justify-content:space-between;
+    margin-left:10%;
+    margin-right:0;
+}
+
+
+.heading1 div{
+    width: 800px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.flex2{
+    display:flex;
+    width: 800px;
+    align-items:right;
+    background-color: white;
+    justify-content:normal;
+    margin-left:0px;
+    margin-right:0px;
+}
+
+.flex2 div{
+    width: 50px;
+    margin: 100px;
+    padding: 0px;
+    text-align:right;
+}
+
+.row2{
+    width:600px;
+    align-items:center;
+}
+
+.row2 div{
+    text-align:right;
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.flex3{
+    display:flex;
+    width: 1000px;
+    align-items:Left;
+    background-color: white;
+    justify-content:space-between;
+    margin-left:10px;
+    margin-right:0px;
+}
+
+.flex3 div{
+    width: 50px;
+    margin: 100px;
+    padding: 0px;
+    text-align:left;
+}
+
+.row3{
+    width:auto;
+    align-items:left;
+    text-align:left;
+    font-size:20px;
+}
+
+.row3 div{
+    text-align:left;
+    width: auto;
+    margin-top: 60px;
+    white-space:nowrap
+}
+
+
+.flex4{
+    display:flex;
+    width: 1200px;
+    align-items:center;
+    background-color: white;
+    justify-content:space-between;
+    margin-left:200px;
+    margin-right:0px;
+}
+
+.flex4 div{
+    width: 50px;
+    margin: 100px;
+    padding: 0px;
+    text-align:left;
+}
+
+
