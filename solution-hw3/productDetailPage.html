@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
   <meta charset="UTF-8">
 
@@ -8,6 +9,8 @@
   </head>
   
   <body>
+
+    <script> src = "behavior.js"</script>
 
     <Heading class = "centeredTextLarge"></Heading>
 
@@ -65,7 +68,8 @@
 
         <label for="glazing"> Glazing:</label>
   
-        <select name="glazing" id="glazing"><br>
+        <select name="glazing" id="glazingOptions" onchange="glazingChange(this)"><br>
+
           <option value="Keep original">Keep original</option>
           <option value="Sugar Milk">Sugar Milk</option>
           <option value="Vanilla Milk">Vanilla Milk</option>
@@ -78,7 +82,7 @@
 
           <label for="Pack size"> Pack Size:</label>
       
-          <select name="glazing" id="glazing"><br>
+          <select name="packsize" id="packSizeOptions" onchange = "packSizeChange(this)"><br>
               <option value="1">1</option>
               <option value="3">3</option>
               <option value="6">6</option>
@@ -88,9 +92,11 @@
         </div>
         
         <div>
-          <checkout class = "centeredTextMid">$2.49</checkout>
+          <checkout class = "centeredTextMid" id = "price">$2.49</checkout>
           <button id = "button">Add to Cart</button>
         </div> 
+
+        <div class = 'centeredTextMid' id = "myElement">0</div>
 
       </div>
     </div>
