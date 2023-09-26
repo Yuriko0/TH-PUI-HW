@@ -262,4 +262,18 @@ a{
     text-align:left;
 }
 
+select {
+    /* Your CSS styles here */
+    width: 300px;
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+}
 
+#intro {
+    width: auto;
+    font-size:25px;
+    font-weight:bold;
+
+}

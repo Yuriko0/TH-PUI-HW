@@ -6,13 +6,12 @@
 
   <head>
     <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <script src="./script.js" type = "text/javascript" defer></script>
   </head>
   
   <body>
 
-    <script> src = "behavior.js"</script>
-
-    <Heading class = "centeredTextLarge"></Heading>
+    <Heading class = "centeredTextLarge">  </Heading>
 
     <div class = "heading1">
       <div id = logo>
@@ -49,7 +48,7 @@
       </div>
     </div>
   
-    
+
     <div class = flex3>
 
       <div>
@@ -60,7 +59,7 @@
 
         <div>
         
-        <menu class = "centeredTextMid">Customize our delicious,<br> 
+        <menu class = "centeredTextMid" id = "intro">Customize our delicious,<br> 
         hand-made cinnamon roll to <br> your liking!</menu>
         
         </div>
@@ -68,21 +67,20 @@
 
         <label for="glazing"> Glazing:</label>
   
-        <select name="glazing" id="glazingOptions" onchange="glazingChange(this)"><br>
-
+        <select name="glazing" id="glazingOptions" onchange="update1(this)"><br>
           <option value="Keep original">Keep original</option>
           <option value="Sugar Milk">Sugar Milk</option>
           <option value="Vanilla Milk">Vanilla Milk</option>
           <option value="Double Chocolate">Double Chocolate</option>
         </select>
-
+      
         </div>
-  
+      
         <div>
 
           <label for="Pack size"> Pack Size:</label>
       
-          <select name="packsize" id="packSizeOptions" onchange = "packSizeChange(this)"><br>
+          <select name="packsize" id="packSizeOptions" onchange = "update2(this)"><br>
               <option value="1">1</option>
               <option value="3">3</option>
               <option value="6">6</option>
@@ -96,7 +94,8 @@
           <button id = "button">Add to Cart</button>
         </div> 
 
-        <div class = 'centeredTextMid' id = "myElement">0</div>
-
       </div>
+
+      
+
     </div>
