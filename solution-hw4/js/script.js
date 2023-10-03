@@ -74,8 +74,7 @@ function update1(){
     }
 
     updateFinal()
-    console.log('gpc updated')
-    console.log('Now the final price is ' + finalPrice)
+    console.log('Glazing option updated')
 
 
 
@@ -91,9 +90,10 @@ function update2(){
     } else if (element2.value === "12"){
         packSizePrice = 10.00;
     }
-    console.log('psp updated')
-    console.log('Now the final price is ' + finalPrice)
+    console.log('Package size updated')
+    
     updateFinal()
+    
 }
 
 
