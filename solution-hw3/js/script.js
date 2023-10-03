@@ -7,6 +7,14 @@ let element1 = document.querySelector("#glazingOptions");
 let element2 = document.querySelector("#packSizeOptions");
 let finalPrice = document.querySelector("#price");
 
+const queryString = window.location.search;
+const params = new URLSearchParams(queryString);
+const rollType = params.get('roll');
+
+console.log(queryString);
+
+console.log(rollType);
+
 function update1(){
     if (element1.value === "Sugar Milk"){
         glazingPriceChange = 0.00;
@@ -47,3 +55,5 @@ function update2(){
 function updateFinal(){
     finalPrice.innerHTML ="$ " + ((unitPrice + glazingPriceChange) * packSizePrice).toFixed(2);
 }
+
+
