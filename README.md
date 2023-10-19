@@ -2,4 +2,5 @@
 
 Deployed website: `https://yuriko0.github.io/TH-PUI-HW/solution-hw6/index.html` 
 
+Github Repository Link: `https://yuriko0.github.io/TH-PUI-HW/solution-hw6/index.html` 
 
