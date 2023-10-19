@@ -1,5 +1,3 @@
-console.log("Please at least enter the detail page one time from the main page so that the URL param could be obtained. Otherwise it may cause errors and malfunctions.")
-
 const rolls = {
     "Original": {
         "basePrice": 2.49,
@@ -31,7 +29,7 @@ const rolls = {
 class Roll {
     constructor(rollType, element1, element2, basePrice) {
         this.type = rollType;
-        this.glazing =  element1;
+        this.glazing = element1;
         this.size = element2;
         this.basePrice = basePrice;
 
@@ -39,14 +37,15 @@ class Roll {
 
     getPrice(){
 
-        let glazingPriceChange, packSizePrice, finalPrice;
         console.log('getting price')
+        let glazingPriceChange, packSizePrice, finalPrice;
+
         if (this.glazing == "Sugar Milk"){
             glazingPriceChange = 0.00;
             console.log('x')
         } else if (this.glazing == "Vanilla Milk"){
             glazingPriceChange = 0.50;
-        } else if (this.glazing == "Original Milk"){
+        } else if (this.glazing == "Keep original"){
             glazingPriceChange = 0.00;
         } else if (this.glazing == "Double Chocolate"){
             glazingPriceChange = 1.50;
@@ -71,37 +70,54 @@ class Roll {
 
 }
 
-
-
-const roll1 = new Roll("Original", "Sugar Milk", 1, 2.49);
-const roll2 = new Roll("Walnut", "Vanilla Milk", 12, 3.49);
-const roll3 = new Roll("Raisin", "Sugar Milk", 3, 2.99);
-const roll4 = new Roll("Apple", "Original Milk", 3, 3.49);
-
 let cart = []
-cart.push(roll1, roll2, roll3, roll4);
-console.log(cart);
+console.log(cart.length);
 let subtotal = 0;
 
-
-function remove(){
-    if (cart.length > 0){
-        cart.pop()
-        const element = document.querySelector("#container");
-        element.innerHTML = '';
-        subtotal = 0;
-        updateCart()
-        console.log(cart)
-        updateSubtotal()
-    }
+if (localStorage.getItem('storedCart') != null){
+    console.log('this has been called')
+    retrieveFromLocalStorage()
 }
 
-function updateCart(){
-    
-    for (let i = 0; i < cart.length; i++){
+document.addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("remove-button")) {
+      const section = e.target.closest(".flex4");
+      if (section) {
+        console.log('you have removed one item from the cart')
+        section.remove(); 
+        }
+    }
+}); // Methods learnt from online resources and tutorials
 
-        const name = cart[i].type;
-        console.log(cart[i]);
+const queryString = window.location.search;
+console.log(queryString);
+
+if (queryString == ''){
+    console.log('you are currently not in detail page')
+    updateCart()
+    updateSubtotal()
+}
+
+const params = new URLSearchParams(queryString);
+const rollType = params.get('roll');
+const basePrice = rolls[rollType].basePrice;
+var glazingPriceChange = 0.00;
+var packSizePrice = 1.00;
+var unitPrice = rolls[rollType].basePrice;
+
+var element1 = document.querySelector("#glazingOptions");
+var element2 = document.querySelector("#packSizeOptions");
+var finalPrice = document.querySelector("#price");  
+
+function updateCart(){
+    retrieveFromLocalStorage()
+    const modCart = [];
+
+    for (let i = 0; i < cart.length; i++){
+        
+        modCart.push(new Roll(cart[i].type, cart[i].glazing, cart[i].size, cart[i].basePrice));        
+        var name = modCart[i].type;
+        console.log(name);
 
         const template = document.getElementById('myTemplate');
         const clone = document.importNode(template.content, true);
@@ -110,38 +126,16 @@ function updateCart(){
         image.src = "/TH-PUI-HW/assets/products/" + rolls[name].imageFile;
     
         const detail = clone.querySelector('detail');
-        detail.innerHTML = cart[i].type + "<br>Glazing: " + cart[i].glazing + "<br>Pack Size: " + cart[i].size;
-
+        detail.innerHTML = modCart[i].type + "<br>Glazing: " + modCart[i].glazing + "<br>Pack Size: " + cart[i].size;
+        
         const price = clone.querySelector('price');
-        price.innerHTML = "$ " + cart[i].getPrice();
+        price.innerHTML = "$ " + modCart[i].getPrice();
 
-        subtotal += Number(cart[i].getPrice());
-
-        console.log(subtotal);
+        subtotal += Number(modCart[i].getPrice());
 
         document.getElementById('container').appendChild(clone);
     }
 }
-
-updateCart()
-updateSubtotal()
-
-
-const queryString = window.location.search;
-const params = new URLSearchParams(queryString);
-const rollType = params.get('roll');
-const basePrice = rolls[rollType].basePrice;
-
-
-
-var glazingPriceChange = 0.00;
-var packSizePrice = 1.00;
-let unitPrice = rolls[rollType].basePrice;
-
-let element1 = document.querySelector("#glazingOptions");
-let element2 = document.querySelector("#packSizeOptions");
-let finalPrice = document.querySelector("#price");
-
 
 
 function updateElement(){
@@ -195,14 +189,35 @@ function updateFinal(){
 
 function updateSubtotal(){
     let currentSubtotal = document.querySelector("#subtotal");
-    currentSubtotal.innerHTML = "$ " + subtotal;
-    console.log(currentSubtotal)
+    currentSubtotal.innerHTML = "$ " + subtotal.toFixed(2);
+    console.log(currentSubtotal);
 }
 
 function addToCart(){
-    const newRoll = new Roll (rollType, element1, element2, basePrice);
-    cart.push(newRoll);
-    console.log('Successfully added into cart. You may then see the information of the new roll///');
-    console.log(newRoll);
-    console.log(cart);
+
+    const newRoll = new Roll(rollType, element1.value, element2.value, basePrice);
+    console.log('this is the new roll', newRoll)
+    let currentCart = JSON.parse(localStorage.getItem('storedCart')) || [];
+    currentCart.push(newRoll);
+    cart = currentCart;
+    console.log('Now this is your cart: ', currentCart)
+    saveToLocalStorage();
+    updateCart()
+}
+
+function saveToLocalStorage(){
+    const cartString = JSON.stringify(cart);
+    localStorage.setItem('storedCart', cartString);
+    console.log('saved to local change');
+}
+
+function retrieveFromLocalStorage(){
+    const cartString = localStorage.getItem('storedCart');
+    cart = JSON.parse(cartString);
+}
+
+
+function clearStorage(){
+    localStorage.clear()
+    console.log('local storage cleared, just for debugging');
 }
