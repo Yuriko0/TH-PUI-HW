@@ -5,12 +5,15 @@
         let elementCount = 0;
 
     function startSession() {
+        //session start
         
         document.getElementById('startButton').disabled = true;
 
         sessionTimer = setInterval(function () {
             updateSessionTimerDisplay();
             if (seconds % 5 === 0) {
+                //You can change this into anytime you want to make the function of time keeper. For example if minutes % 30 === 0
+                //Then it means a tree creates every 30 minutes. Please adjust the tree growth function according to this.
                 createTree();
             }
             seconds++;
@@ -26,6 +29,8 @@
     }
         
     function createTree() {
+        //creates tree every five seconds, this is a step function
+
         const tree = document.createElement('img');
         const randomTreeIcon = getRandomTreeIcon();
         tree.src = randomTreeIcon;
@@ -35,6 +40,7 @@
         tree.addEventListener('mousedown', startDrag);
         document.body.appendChild(tree);
         elementCount++;
+        ;
     }
     
     function setBackground() {
@@ -56,6 +62,9 @@
     }
 
     function startDrag(event) {
+
+        //dragging function
+
         const tree = event.target;
         tree.style.cursor = 'grabbing';
         tree.style.zIndex = '1000';
@@ -74,15 +83,18 @@
             startGrowth(tree); 
         }
 
+        //handle functions to support the move and calculate the accurate position
         document.addEventListener('mousemove', handleMove);
         document.addEventListener('mouseup', handleRelease);
     }
 
     function startGrowth(tree) {
+        //tree growth every set time
+        //You can change this into anytime you want to make the function of time keeper, unit is milisecond.
         let growthInterval;
         growthInterval = setInterval(function () {
             animateTreeGrowth(tree);
-        }, 10000);
+        }, 10000); //you can change here
     }
 
     function animateTreeGrowth(tree) {
@@ -98,11 +110,11 @@
 
     function updateSessionTimerDisplay() {
         const timerDisplay = document.getElementById('timer');
-        timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        timerDisplay.textContent = `0${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
 
     function getRandomTreeIcon() {
-        const treeIcons = ['tree1.png', 'tree2.png', 'tree3.png'];
+        const treeIcons = ['tree1.png', 'tree2.png', 'tree3.png', 'tree4.png', 'tree5.png'];
         const randomIndex = Math.floor(Math.random() * treeIcons.length);
         return treeIcons[randomIndex];
     }
@@ -117,20 +129,21 @@
         resetSession();
     }
 
-    function takeScreenshot() {
-        const screenshot = document.documentElement.cloneNode(true);
-        screenshot.style.overflow = 'hidden';
-        return screenshot;
-    }
-
-    function saveScreenshot(screenshot) {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(new Blob([screenshot.outerHTML], { type: 'text/html' }));
-        link.download = 'tree_session.html';
-        link.click();
-    }
+    document.getElementById('endSessionButton').addEventListener('click', function () {
+        const elementToCapture = document.body;
+        // Use html2canvas to capture the screenshot. 
+        html2canvas(elementToCapture).then(function (canvas) {
+            const dataUrl = canvas.toDataURL();
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'screenshot.png'; 
+            link.click();
+        });
+    });
+    
 
     function resetSession() {
+        //entire page reset
         minutes = 0;
         seconds = 0;
         elementCount = 0;
@@ -140,6 +153,9 @@
         const trees = document.querySelectorAll('.tree');
         trees.forEach(tree => tree.remove());
 
+        const houses = document.querySelectorAll('.house');
+        houses.forEach(house => house.remove());
+
         document.getElementById('startButton').disabled = false;
     }
 
@@ -147,20 +163,20 @@
         const currentTimeDisplay = document.createElement('p');
         currentTimeDisplay.id = 'currentTime';
         document.body.appendChild(currentTimeDisplay);
-            setInterval(updateCurrentTime, 1000);
+        setInterval(updateCurrentTime, 1000);
     }
     
     function updateCurrentTime() {
+        //retrieve current time from the system
         const now = new Date();
         const hours = now.getHours();
         const minutes = now.getMinutes();
-        const seconds = now.getSeconds();
-        console.log(hours, minutes, seconds);
-    
+        console.log(hours, minutes);
         const currentTimeDisplay = document.getElementById('currentTime');
-        currentTimeDisplay.textContent = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
+        currentTimeDisplay.textContent = `${formatTime(hours)}:${formatTime(minutes)}`;
     }
     
     function formatTime(time) {
+        //formate the time to ensure the length 0 or 00 for the min/sec does not affect the display
         return time < 10 ? `0${time}` : time;
     }
